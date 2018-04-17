@@ -107,7 +107,7 @@
 <meta property="og:site_name" content="Hammer&#39;s Blog">
 <meta property="og:description" content="CheckService.py 是一个 Python 语言编写的守护进程，用于保证 VPN、接口程序 能够稳定运行，在程序意外退出的时候，能够自动启动，大大的降低了 VPN 网络不通和接口程序 意外退出的发生几率，使其更易于维护  主要步骤 文件简介 部署守护进程服务 部署 CheckService VPN 检测 多 VPN 部署 检查额外的接口 其他注意事项">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-04-17T11:45:14.398Z">
+<meta property="og:updated_time" content="2018-04-17T11:47:36.937Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="CheckService 脚本部署和使用">
 <meta name="twitter:description" content="CheckService.py 是一个 Python 语言编写的守护进程，用于保证 VPN、接口程序 能够稳定运行，在程序意外退出的时候，能够自动启动，大大的降低了 VPN 网络不通和接口程序 意外退出的发生几率，使其更易于维护  主要步骤 文件简介 部署守护进程服务 部署 CheckService VPN 检测 多 VPN 部署 检查额外的接口 其他注意事项">
@@ -333,7 +333,7 @@
                 
               
 
-              <time title="Created: 2018-04-17 11:13:06 / Modified: 19:45:14" itemprop="dateCreated datePublished" datetime="2018-04-17T11:13:06+08:00">2018-04-17</time>
+              <time title="Created: 2018-04-17 11:13:06 / Modified: 19:47:36" itemprop="dateCreated datePublished" datetime="2018-04-17T11:13:06+08:00">2018-04-17</time>
             
 
             
@@ -392,6 +392,7 @@
 <p>部署方式也比较简单，将 <code>CheckService.py</code> 文件放到 <code>/etc/init.d/</code>和<code>/home/bus365/</code> 目录下即可</p>
 <div class="note danger"><p><strong>注意：</strong> <em>接口升级时会默认推送脚本到第1、2个地址，第三个地址已经不再使用，但是为了防止个别现象才有这个路径</em> </p></div>
 
+
 ### 启动
 输入守护进程命令，查看能否正常运行
 undefined
@@ -400,6 +401,7 @@ undefined
 <p>至此，默认的部署方式就结束了，此方案已经支持了绝大多数的车站，但是还有一些特殊车站并不适用，接下来将说一下 <code>CheckService.py</code> 的其他用法</p>
 <h2 id="VPN-检测"><a href="#VPN-检测" class="headerlink" title="VPN 检测"></a>VPN 检测</h2><p>脚本默认检查的是<code>10.10.1.86</code>这个地址的连通性，但是有一些车站的 VPN服务器 并不在北京，比如云南、广西等，所以默认的方案并不适用<br>这时，服务启动的命令就不一样了<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 例</span></span><br><span class="line">service checkservice start 192.168.3.1</span><br></pre></td></tr></table></figure></p>
 <div class="note primary"><p><code>start</code> 命令后边需要再加上要检测的 VPN 服务器地址，这样就会检查<code>192.168.3.1</code>这个地址的连通性，不加的话默认是检测 <code>10.10.1.86</code>，如果加<code>0.0.0.0</code> 则不检查VPN </p></div>
+
 
 ## 多 VPN 部署
 还有一些省份的车站是有多个 VPN 的，比如甘肃、广西等
@@ -414,7 +416,7 @@ undefined
 undefined
 
 <div class="note primary"><p><code>start</code> 命令后边需要再加上要检测的<strong>VPN ip</strong> 和要检测的<strong>接口服务路径</strong>，<strong>小写逗号</strong>分隔 </p></div>
-<div class="note primary"><p><strong>注意：</strong> 使用此方法则必须要使用两个参数，参数1是要检测的VPN ip，<code>-d</code> 是默认ip的意思，如果加<code>0.0.0.0</code> 则不检查VPN，参数2 是要检测的接口服务路径 </p></div>
+<div class="note danger"><p><strong>注意：</strong> 使用此方法则必须要使用两个参数，参数1是要检测的VPN ip，<code>-d</code> 是默认ip的意思，如果加<code>0.0.0.0</code> 则不检查VPN，参数2 是要检测的接口服务路径 </p></div>
 <h2 id="其他注意事项："><a href="#其他注意事项：" class="headerlink" title="其他注意事项："></a>其他注意事项：</h2><ul>
 <li>用逗号分隔的，都必须用小写逗号</li>
 <li>ip 地址，路径等 必须要写正确，写之前必须检查一遍</li>
