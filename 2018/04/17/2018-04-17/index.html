@@ -107,7 +107,7 @@
 <meta property="og:site_name" content="Hammer&#39;s Blog">
 <meta property="og:description" content="CheckService.py 是一个 Python 语言编写的守护进程，用于保证 VPN、接口程序 能够稳定运行，在程序意外退出的时候，能够自动启动，大大的降低了 VPN 网络不通和接口程序 意外退出的发生几率，使其更易于维护  主要步骤 文件简介 部署守护进程服务 部署 CheckService VPN 检测 多 VPN 部署 检查额外的接口 其他注意事项">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-04-17T13:06:29.878Z">
+<meta property="og:updated_time" content="2018-04-17T13:11:22.740Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="CheckService 脚本部署和使用">
 <meta name="twitter:description" content="CheckService.py 是一个 Python 语言编写的守护进程，用于保证 VPN、接口程序 能够稳定运行，在程序意外退出的时候，能够自动启动，大大的降低了 VPN 网络不通和接口程序 意外退出的发生几率，使其更易于维护  主要步骤 文件简介 部署守护进程服务 部署 CheckService VPN 检测 多 VPN 部署 检查额外的接口 其他注意事项">
@@ -333,7 +333,7 @@
                 
               
 
-              <time title="Created: 2018-04-17 11:13:06 / Modified: 21:06:29" itemprop="dateCreated datePublished" datetime="2018-04-17T11:13:06+08:00">2018-04-17</time>
+              <time title="Created: 2018-04-17 11:13:06 / Modified: 21:11:22" itemprop="dateCreated datePublished" datetime="2018-04-17T11:13:06+08:00">2018-04-17</time>
             
 
             
@@ -384,27 +384,21 @@
 <li>其他注意事项</li>
 </ol>
 <a id="more"></a>
-<h2 id="文件简介"><a href="#文件简介" class="headerlink" title="文件简介"></a>文件简介</h2><p>主要用到的有两个文件 <code>checkservice</code>、<code>CheckService.py</code><br><code>checkservice</code> 是守护进程服务，主要用于 <code>启动 | 停止 | 重启</code> CheckService.py 脚本，同时服务应用了单例模式，确保了同一时刻内只有一个 CheckService 进程<br>使用方法：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">service checkservice [start|stop|restart]</span><br></pre></td></tr></table></figure>
+<h2 id="文件简介"><a href="#文件简介" class="headerlink" title="文件简介"></a>文件简介</h2><p>主要用到的有两个文件 <code>checkservice</code>、<code>CheckService.py</code><br><code>checkservice</code> 是守护进程服务，主要用于 <code>启动 | 停止 | 重启</code> CheckService.py 脚本，同时服务应用了单例模式，确保了同一时刻内只有一个 CheckService 进程<br>使用方法：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">service checkservice [start|stop|restart]</span><br></pre></td></tr></table></figure></p>
 <h3 id="其他文件"><a href="#其他文件" class="headerlink" title="其他文件"></a>其他文件</h3><p><code>/home/bus365/pausecheckservice.conf</code> 此文件为空文件，默认无此文件，一旦加上此文件后，将停止检查接口程序半小时，一般用于接口升级<br><code>/home/bus365/other_vpns.conf</code> 此文件用于多 VPN 部署，后边将会详细介绍</p>
-<h2 id="部署守护进程"><a href="#部署守护进程" class="headerlink" title="部署守护进程"></a>部署守护进程</h2><p>此步骤较为简单<br>将 <code>checkservice</code> 文件放到 <code>/etc/init.d/</code> 目录下，同时加上执行权限</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">chmod +x /etc/init.d/checkservice</span><br></pre></td></tr></table></figure>
+<h2 id="部署守护进程"><a href="#部署守护进程" class="headerlink" title="部署守护进程"></a>部署守护进程</h2><p>此步骤较为简单<br>将 <code>checkservice</code> 文件放到 <code>/etc/init.d/</code> 目录下，同时加上执行权限<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">chmod +x /etc/init.d/checkservice</span><br></pre></td></tr></table></figure></p>
 <p>至此 守护进程服务 部署完成</p>
 <h2 id="部署-CheckService-py"><a href="#部署-CheckService-py" class="headerlink" title="部署 CheckService.py"></a>部署 CheckService.py</h2><p>因历史遗留原因，导致此脚本有不同版本，不同路径，主要路径如下：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">/etc/init.d/CheckService.py</span><br><span class="line">/home/bus365/CheckService.py</span><br><span class="line">/home/bus365/pym/CheckService.py</span><br></pre></td></tr></table></figure></p>
-<p>部署方式也比较简单，将 <code>CheckService.py</code> 文件放到 <code>/etc/init.d/</code>和<code>/home/bus365/</code> 目录下即可</p>
-<div class="note danger"><p><strong>注意：</strong> <em>接口升级时会默认推送脚本到第1、2个地址，第三个地址已经不再使用，但是为了防止个别现象才有这个路径</em></p></div>
-<h3 id="启动"><a href="#启动" class="headerlink" title="启动"></a>启动</h3><p>输入守护进程命令，查看能否正常运行</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">service checkservice start</span><br><span class="line"># 加入开机启动</span><br><span class="line">chkconfig checkservice on</span><br></pre></td></tr></table></figure>
-<p><strong>守护进行服务</strong> 会依次检测上述三个地址，这三个地址的优先级也是按照上述顺序所示，只要检测到就会使用这个脚本，也就是说只要检测到 <code>/etc/init.d/CheckService.py</code> 这个文件，就会停止检测并使用这个文件，如果检测不到则会继续检查下一个路径</p>
+<p>部署方式也比较简单，将 <code>CheckService.py</code> 文件放到 <code>/etc/init.d/</code>和<code>/home/bus365/</code> 目录下即可<br><div class="note danger"><p><strong>注意：</strong> <em>接口升级时会默认推送脚本到第1、2个地址，第三个地址已经不再使用，但是为了防止个别现象才有这个路径</em></p></div></p>
+<h3 id="启动"><a href="#启动" class="headerlink" title="启动"></a>启动</h3><p>输入守护进程命令，查看能否正常运行<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">service checkservice start</span><br><span class="line"># 加入开机启动</span><br><span class="line">chkconfig checkservice on</span><br></pre></td></tr></table></figure></p>
+<div class="note info"><p><strong>守护进行服务</strong> 会依次检测上述三个地址，这三个地址的优先级也是按照上述顺序所示，只要检测到就会使用这个脚本，也就是说只要检测到 <code>/etc/init.d/CheckService.py</code> 这个文件，就会停止检测并使用这个文件，如果检测不到则会继续检查下一个路径</p></div>
 <p>至此，默认的部署方式就结束了，此方案已经支持了绝大多数的车站，但是还有一些特殊车站并不适用，接下来将说一下 <code>CheckService.py</code> 的其他用法</p>
-<h2 id="VPN-检测"><a href="#VPN-检测" class="headerlink" title="VPN 检测"></a>VPN 检测</h2><p>脚本默认检查的是<code>10.10.1.86</code>这个地址的连通性，但是有一些车站的 VPN服务器 并不在北京，比如云南、广西等，所以默认的方案并不适用<br>这时，服务启动的命令就不一样了<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 例</span></span><br><span class="line">service checkservice start 192.168.3.1</span><br></pre></td></tr></table></figure></p>
-<p><code>start</code> 命令后边需要再加上要检测的 VPN 服务器地址，这样就会检查<code>192.168.3.1</code>这个地址的连通性，不加的话默认是检测 <code>10.10.1.86</code>，如果加<code>0.0.0.0</code> 则不检查VPN</p>
-<h2 id="多-VPN-部署"><a href="#多-VPN-部署" class="headerlink" title="多 VPN 部署"></a>多 VPN 部署</h2><p>还有一些省份的车站是有多个 VPN 的，比如甘肃、广西等<br>如何同时检测多个vpn，文件简介里提到了一个 <code>/home/bus365/other_vpns.conf</code> 文件，这个文件就是用来检测多个 VPN 的，这个文件的格式是</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"># 需要检测的 VPN服务器ip+VPN证书路径，*小写逗号*分隔</span><br><span class="line"># 例</span><br><span class="line">192.168.3.3,/etc/openvpngs/</span><br></pre></td></tr></table></figure>
+<h2 id="VPN-检测"><a href="#VPN-检测" class="headerlink" title="VPN 检测"></a>VPN 检测</h2><p>脚本默认检查的是<code>10.10.1.86</code>这个地址的连通性，但是有一些车站的 VPN服务器 并不在北京，比如云南、广西等，所以默认的方案并不适用所有的场景<br>这时，服务启动的命令就不一样了<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 例</span></span><br><span class="line">service checkservice start 192.168.3.1</span><br></pre></td></tr></table></figure></p>
+<div class="note info"><p><code>start</code> 命令后边需要再加上要检测的 VPN 服务器地址，这样就会检查<code>192.168.3.1</code>这个地址的连通性，不加的话默认是检测 <code>10.10.1.86</code>，如果加<code>0.0.0.0</code> 则不检查VPN</p></div>
+<h2 id="多-VPN-部署"><a href="#多-VPN-部署" class="headerlink" title="多 VPN 部署"></a>多 VPN 部署</h2><p>还有一些省份的车站是有多个 VPN 的，比如甘肃、广西等<br>如何同时检测多个vpn，文件简介里提到了一个 <code>/home/bus365/other_vpns.conf</code> 文件，这个文件就是用来检测多个 VPN 的，这个文件的格式是<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"># 需要检测的 VPN服务器ip+VPN证书路径，*小写逗号*分隔</span><br><span class="line"># 例</span><br><span class="line">192.168.3.3,/etc/openvpngs/</span><br></pre></td></tr></table></figure></p>
 <p>这个检测的策略是，遍历去检测默认的 VPN 和这个文件里所有的 VPN ，只要有不通的就会杀死所有 VPN 并启动所有 VPN</p>
-<h2 id="检测额外的接口"><a href="#检测额外的接口" class="headerlink" title="检测额外的接口"></a>检测额外的接口</h2><p>此方法主要用于检测除了常规接口服务的其他接口服务，比如保险服务，自助机服务等</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">service checkservice start -d /home/bus365/s1,/home/bus365/s2...</span><br></pre></td></tr></table></figure>
-<p><code>start</code> 命令后边需要再加上要检测的<strong>VPN ip</strong> 和要检测的<strong>接口服务路径</strong>，<strong>小写逗号</strong>分隔</p>
+<h2 id="检测额外的接口"><a href="#检测额外的接口" class="headerlink" title="检测额外的接口"></a>检测额外的接口</h2><p>此方法主要用于检测除了常规接口服务的其他接口服务，比如保险服务，自助机服务等<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">service checkservice start -d /home/bus365/s1,/home/bus365/s2...</span><br></pre></td></tr></table></figure></p>
+<div class="note info"><p><code>start</code> 命令后边需要再加上要检测的<strong>VPN ip</strong> 和要检测的<strong>接口服务路径</strong>，<strong>小写逗号</strong>分隔</p></div>
 <div class="note danger"><p><strong>注意：</strong> 使用此方法则必须要使用两个参数，参数1是要检测的VPN ip，<code>-d</code> 是默认ip的意思，如果加<code>0.0.0.0</code> 则不检查VPN，参数2 是要检测的接口服务路径</p></div>
 <h2 id="其他注意事项："><a href="#其他注意事项：" class="headerlink" title="其他注意事项："></a>其他注意事项：</h2><ul>
 <li>用逗号分隔的，都必须用小写逗号</li>
