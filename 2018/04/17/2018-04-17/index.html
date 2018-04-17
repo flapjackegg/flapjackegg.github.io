@@ -107,7 +107,7 @@
 <meta property="og:site_name" content="Hammer&#39;s Blog">
 <meta property="og:description" content="CheckService.py 是一个 Python 语言编写的守护进程，用于保证 VPN、接口程序 能够稳定运行，在程序意外退出的时候，能够自动启动，大大的降低了 VPN 网络不通和接口程序 意外退出的发生几率，使其更易于维护  主要步骤 文件简介 部署守护进程服务 部署 CheckService VPN 检测 多 VPN 部署 检查额外的接口 其他注意事项">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-04-17T12:45:12.738Z">
+<meta property="og:updated_time" content="2018-04-17T12:46:49.627Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="CheckService 脚本部署和使用">
 <meta name="twitter:description" content="CheckService.py 是一个 Python 语言编写的守护进程，用于保证 VPN、接口程序 能够稳定运行，在程序意外退出的时候，能够自动启动，大大的降低了 VPN 网络不通和接口程序 意外退出的发生几率，使其更易于维护  主要步骤 文件简介 部署守护进程服务 部署 CheckService VPN 检测 多 VPN 部署 检查额外的接口 其他注意事项">
@@ -333,7 +333,7 @@
                 
               
 
-              <time title="Created: 2018-04-17 11:13:06 / Modified: 20:45:12" itemprop="dateCreated datePublished" datetime="2018-04-17T11:13:06+08:00">2018-04-17</time>
+              <time title="Created: 2018-04-17 11:13:06 / Modified: 20:46:49" itemprop="dateCreated datePublished" datetime="2018-04-17T11:13:06+08:00">2018-04-17</time>
             
 
             
@@ -394,7 +394,6 @@
 
 ### 启动
 输入守护进程命令，查看能否正常运行
-
 undefined
 
 <div class="note primary"><p><strong>守护进行服务</strong> 会依次检测上述三个地址，这三个地址的优先级也是按照上述顺序所示，只要检测到就会使用这个脚本，也就是说只要检测到 <code>/etc/init.d/CheckService.py</code> 这个文件，就会停止检测并使用这个文件，如果检测不到则会继续检查下一个路径 </p></div>
