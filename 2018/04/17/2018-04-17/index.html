@@ -107,7 +107,7 @@
 <meta property="og:site_name" content="Hammer&#39;s Blog">
 <meta property="og:description" content="CheckService.py 是一个 Python 语言编写的守护进程，用于保证 VPN、接口程序 能够稳定运行，在程序意外退出的时候，能够自动启动，大大的降低了 VPN 网络不通和接口程序 意外退出的发生几率，使其更易于维护  主要步骤 文件简介 部署守护进程服务 部署 CheckService VPN 检测 多 VPN 部署 检查额外的接口 其他注意事项">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-04-17T12:46:49.627Z">
+<meta property="og:updated_time" content="2018-04-17T12:53:17.467Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="CheckService 脚本部署和使用">
 <meta name="twitter:description" content="CheckService.py 是一个 Python 语言编写的守护进程，用于保证 VPN、接口程序 能够稳定运行，在程序意外退出的时候，能够自动启动，大大的降低了 VPN 网络不通和接口程序 意外退出的发生几率，使其更易于维护  主要步骤 文件简介 部署守护进程服务 部署 CheckService VPN 检测 多 VPN 部署 检查额外的接口 其他注意事项">
@@ -333,7 +333,7 @@
                 
               
 
-              <time title="Created: 2018-04-17 11:13:06 / Modified: 20:46:49" itemprop="dateCreated datePublished" datetime="2018-04-17T11:13:06+08:00">2018-04-17</time>
+              <time title="Created: 2018-04-17 11:13:06 / Modified: 20:53:17" itemprop="dateCreated datePublished" datetime="2018-04-17T11:13:06+08:00">2018-04-17</time>
             
 
             
@@ -372,7 +372,7 @@
 
       
         <blockquote>
-<p> CheckService.py 是一个 Python 语言编写的守护进程，用于保证 VPN、接口程序 能够稳定运行，在程序意外退出的时候，能够自动启动，大大的降低了 VPN 网络不通和接口程序 意外退出的发生几率，使其更易于维护</p>
+<p>CheckService.py 是一个 Python 语言编写的守护进程，用于保证 VPN、接口程序 能够稳定运行，在程序意外退出的时候，能够自动启动，大大的降低了 VPN 网络不通和接口程序 意外退出的发生几率，使其更易于维护</p>
 </blockquote>
 <h2 id="主要步骤"><a href="#主要步骤" class="headerlink" title="主要步骤"></a>主要步骤</h2><ol>
 <li>文件简介</li>
@@ -384,9 +384,11 @@
 <li>其他注意事项</li>
 </ol>
 <a id="more"></a>
-<h2 id="文件简介"><a href="#文件简介" class="headerlink" title="文件简介"></a>文件简介</h2><p>主要用到的有两个文件 <code>checkservice</code>、<code>CheckService.py</code><br><code>checkservice</code> 是守护进程服务，主要用于 <code>启动 | 停止 | 重启</code> CheckService.py 脚本，同时服务应用了单例模式，确保了同一时刻内只有一个 CheckService 进程<br>使用方法：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">service checkservice [start|stop|restart]</span><br></pre></td></tr></table></figure></p>
+<h2 id="文件简介"><a href="#文件简介" class="headerlink" title="文件简介"></a>文件简介</h2><p>主要用到的有两个文件 <code>checkservice</code>、<code>CheckService.py</code><br><code>checkservice</code> 是守护进程服务，主要用于 <code>启动 | 停止 | 重启</code> CheckService.py 脚本，同时服务应用了单例模式，确保了同一时刻内只有一个 CheckService 进程<br>使用方法：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">service checkservice [start|stop|restart]</span><br></pre></td></tr></table></figure>
 <h3 id="其他文件"><a href="#其他文件" class="headerlink" title="其他文件"></a>其他文件</h3><p><code>/home/bus365/pausecheckservice.conf</code> 此文件为空文件，默认无此文件，一旦加上此文件后，将停止检查接口程序半小时，一般用于接口升级<br><code>/home/bus365/other_vpns.conf</code> 此文件用于多 VPN 部署，后边将会详细介绍</p>
-<h2 id="部署守护进程"><a href="#部署守护进程" class="headerlink" title="部署守护进程"></a>部署守护进程</h2><p>此步骤较为简单<br>将 <code>checkservice</code> 文件放到 <code>/etc/init.d/</code> 目录下，同时加上执行权限<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">chmod +x /etc/init.d/checkservice</span><br></pre></td></tr></table></figure></p>
+<h2 id="部署守护进程"><a href="#部署守护进程" class="headerlink" title="部署守护进程"></a>部署守护进程</h2><p>此步骤较为简单<br>将 <code>checkservice</code> 文件放到 <code>/etc/init.d/</code> 目录下，同时加上执行权限</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">chmod +x /etc/init.d/checkservice</span><br></pre></td></tr></table></figure>
 <p>至此 守护进程服务 部署完成</p>
 <h2 id="部署-CheckService-py"><a href="#部署-CheckService-py" class="headerlink" title="部署 CheckService.py"></a>部署 CheckService.py</h2><p>因历史遗留原因，导致此脚本有不同版本，不同路径，主要路径如下：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">/etc/init.d/CheckService.py</span><br><span class="line">/home/bus365/CheckService.py</span><br><span class="line">/home/bus365/pym/CheckService.py</span><br></pre></td></tr></table></figure></p>
 <p>部署方式也比较简单，将 <code>CheckService.py</code> 文件放到 <code>/etc/init.d/</code>和<code>/home/bus365/</code> 目录下即可</p>
@@ -394,6 +396,7 @@
 
 ### 启动
 输入守护进程命令，查看能否正常运行
+
 undefined
 
 <div class="note primary"><p><strong>守护进行服务</strong> 会依次检测上述三个地址，这三个地址的优先级也是按照上述顺序所示，只要检测到就会使用这个脚本，也就是说只要检测到 <code>/etc/init.d/CheckService.py</code> 这个文件，就会停止检测并使用这个文件，如果检测不到则会继续检查下一个路径 </p></div>
