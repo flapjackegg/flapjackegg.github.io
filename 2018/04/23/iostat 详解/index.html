@@ -107,7 +107,7 @@
 <meta property="og:site_name" content="Hammer&#39;s Blog">
 <meta property="og:description" content="命令简介  iostat，用于报告中央处理器（CPU）统计信息和整个系统、适配器、tty 设备、磁盘和 CD-ROM 的输入/输出统计信息。  命令格式常用命令参数 -c 显示CPU使用情况-d 显示磁盘使用情况-k 以 KB 为单位显示-m 以 M 为单位显示-N 显示磁盘阵列(LVM) 信息-n 显示NFS 使用情况-p[磁盘] 显示磁盘和分区的情况-t 显示终端和CPU的信息-x 显示详细信">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-07-16T14:50:28.870Z">
+<meta property="og:updated_time" content="2018-07-16T15:25:25.303Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="iostat 命令详解">
 <meta name="twitter:description" content="命令简介  iostat，用于报告中央处理器（CPU）统计信息和整个系统、适配器、tty 设备、磁盘和 CD-ROM 的输入/输出统计信息。  命令格式常用命令参数 -c 显示CPU使用情况-d 显示磁盘使用情况-k 以 KB 为单位显示-m 以 M 为单位显示-N 显示磁盘阵列(LVM) 信息-n 显示NFS 使用情况-p[磁盘] 显示磁盘和分区的情况-t 显示终端和CPU的信息-x 显示详细信">
@@ -350,7 +350,7 @@
                 
                   <span class="post-meta-item-text">Edited on</span>
                 
-                <time title="Modified: 2018-07-16 22:50:28" itemprop="dateModified" datetime="2018-07-16T22:50:28+08:00">2018-07-16</time>
+                <time title="Modified: 2018-07-16 23:25:25" itemprop="dateModified" datetime="2018-07-16T23:25:25+08:00">2018-07-16</time>
               
             
           </span>
@@ -407,6 +407,7 @@
 <h2 id="命令格式"><a href="#命令格式" class="headerlink" title="命令格式"></a>命令格式</h2><h2 id="常用命令参数"><a href="#常用命令参数" class="headerlink" title="常用命令参数"></a>常用命令参数</h2><blockquote>
 <p>-c 显示CPU使用情况<br>-d 显示磁盘使用情况<br>-k 以 KB 为单位显示<br>-m 以 M 为单位显示<br>-N 显示磁盘阵列(LVM) 信息<br>-n 显示NFS 使用情况<br>-p[磁盘] 显示磁盘和分区的情况<br>-t 显示终端和CPU的信息<br>-x 显示详细信息<br>-V 显示版本信息</p>
 </blockquote>
+<a id="more"></a>
 <h2 id="使用方法"><a href="#使用方法" class="headerlink" title="使用方法"></a>使用方法</h2><p>常用的方法如下<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"># 查看 磁盘信息 每 1秒刷新一次 共 5次</span><br><span class="line">iostat  -dm 1 5</span><br><span class="line"># 查看 磁盘详细信息</span><br><span class="line">iostat -dmx</span><br><span class="line"># 查看 CPU 信息</span><br><span class="line">iostat -c</span><br></pre></td></tr></table></figure></p>
 <h2 id="各项值的含义"><a href="#各项值的含义" class="headerlink" title="各项值的含义"></a>各项值的含义</h2><h3 id="cpu属性值说明："><a href="#cpu属性值说明：" class="headerlink" title="cpu属性值说明："></a>cpu属性值说明：</h3><p><code>%user</code> CPU处在用户模式下的时间百分比。<br><code>%nice</code> CPU处在带NICE值的用户模式下的时间百分比。<br><code>%system</code> CPU处在系统模式下的时间百分比。<br><code>%iowait</code> CPU等待输入输出完成时间的百分比。<br><code>%steal</code> 管理程序维护另一个虚拟处理器时，虚拟CPU的无意识等待时间百分比。<br><code>%idle</code> CPU空闲时间百分比。</p>
 <h3 id="io-值说明"><a href="#io-值说明" class="headerlink" title="io 值说明"></a>io 值说明</h3><ul>
